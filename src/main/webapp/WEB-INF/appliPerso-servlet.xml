@@ -7,7 +7,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+	<!-- indique a la servlet spring (defini dans le web.xml) d'utilisé des annotations -->
 	<context:component-scan base-package="fr.appli.perso.web.controleur" />
+	
+	<!-- support JSR303 annotation if JSR 303 validation present on classpath -->
 	<mvc:annotation-driven />
 	
 	 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

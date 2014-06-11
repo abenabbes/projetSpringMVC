@@ -4,6 +4,6 @@
 <title>appliWebPerso</title>
 </head>
 <body>
-   <h2>${message}</h2>
+   <h2><font color="green">${message}</font></h2>
 </body>
 </html>
