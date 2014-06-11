@@ -2,6 +2,38 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>projetSpringMVC</groupId>
   <artifactId>projetSpringMVC</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-RELEASE</version>
   <packaging>war</packaging>
+  
+  <properties>
+  	<jdk.version>1.6</jdk.version>
+  	<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+  </properties>
+  
+  <dependencies>
+        <!-- Spring MVC depends on spring-core, spring-beans, spring-context, spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+    </dependencies>
+  <build>
+  	<finalName>projetSpringMVC</finalName>
+  	
+  	 <!-- Les plugins -->
+		<plugins>	
+             <!-- La version de maven utilisé dans notre cas c'est la 2.2.1-->		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>	 
+  </build>
+  
 </project>
