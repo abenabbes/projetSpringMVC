@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- chargement de fichier de config de la datasource  -->
+<!-- 	<bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"> -->
+<!-- 		<property name="locations" > -->
+<!-- 			<list> -->
+<!-- 				<value>classpath:db/appliPerso-jdbc.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	<!-- Activation des annotations dans la couche DAO -->
+	<context:component-scan base-package="fr.appli.perso.dao" />
+	
+	<!-- chargement de fichier de config de la datasource  -->
+	<context:property-placeholder location="classpath:db/appliPerso-jdbc.properties"/>
+	
+	<!-- transaction -->
+    <tx:annotation-driven />
+    
+    <!-- datasource -->
+    <bean id="_dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close" 
+		lazy-init="false" 
+		p:driverClassName="${jdbc.driverClassName}" 
+		p:url="${jdbc.url}"
+		p:username="${jdbc.username}" 
+		p:password="${jdbc.password}" 
+		p:initialSize="5" 
+		p:maxActive="100" 
+		p:maxIdle="30" 
+		p:maxWait="1000" 
+		p:poolPreparedStatements="true"
+		p:defaultAutoCommit="false" 
+		p:removeAbandoned="true" 
+		p:removeAbandonedTimeout="60">
+        <description>
+			Simple datasource. This is a direct access to the datasource that can be used for specific queries that need to bypass hibernate functionnalities.
+			However, if you
+			need to use JDBC, please look at hibernate SQL-QUERIES, they would most probably be a more elegant way to solve your problem.
+        </description>
+    </bean>
+    
+    <bean id="dataSource" class="net.bull.javamelody.SpringDataSourceFactoryBean">
+        <property name="targetName" value="_dataSource" />
+    </bean>
+    
+    <!-- jpa -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+        <description>Enable exception translation for beans annotated with @Repository</description>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" 
+		p:entityManagerFactory-ref="entityManagerFactory">
+        <description>Please read http://www.springframework.org/docs/reference/transaction.html</description>
+    </bean>
+    <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <description>Allow spring to configure hibernate specific settings</description>
+    </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" 
+		p:dataSource-ref="dataSource" 
+		p:persistenceUnitName="projet-spring-PU"
+		p:jpaVendorAdapter-ref="hibernateJpaVendorAdapter" 
+		p:jpaProperties="classpath:hibernate.properties">
+        <description>Build the entity manager with Hibernate as a provider</description>
+    </bean>
+</beans>

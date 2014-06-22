@@ -3,5 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
+	<!-- import du fichier de configuration de la couche domaine -->
+	<import resource="classpath:spring/appliPerso-domaine.xml"/>
+	
+	<!-- import du fichier de configuration de la couche service -->
+	<import resource="classpath:spring/appliPerso-service.xml"/>
+	
+	<!-- import du fichier de configuration de la couche dao -->
+	<import resource="classpath:spring/appliPerso-persistence.xml"/>
 
 </beans>
