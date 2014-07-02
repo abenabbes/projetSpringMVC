@@ -4,6 +4,8 @@
 package fr.appli.perso.domaine;
 
 import fr.appli.perso.dao.entite.Personne;
+import fr.appli.perso.web.vo.PersonneVo;
+
 import java.util.List;
 
 /**
@@ -16,5 +18,5 @@ public interface IPersonneDomaine {
 
 	public List<Personne> findAll();
 	
-	public List<Personne> findByNom(String nomPerson);
+	public List<PersonneVo> findByNom(String nomPerson);
 }

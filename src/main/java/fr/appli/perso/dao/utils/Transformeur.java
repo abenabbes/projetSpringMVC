@@ -11,7 +11,7 @@ package fr.appli.perso.dao.utils;
  */
 public abstract class Transformeur {
 	
-	protected Object entiteToVo(Object entite ){
+	public Object entiteToVo(Object entite ){
 		Object valeur = new Object();
 		if(entite != null){
 			valeur = entite;

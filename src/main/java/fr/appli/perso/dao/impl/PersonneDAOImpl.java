@@ -11,8 +11,10 @@ import javax.persistence.Query;
 import org.hsqldb.lib.ArrayListIdentity;
 
 
+
 import fr.appli.perso.dao.IPersonne;
 import fr.appli.perso.dao.entite.Personne;
+import fr.appli.perso.dao.enums.PersonneTypes;
 import fr.appli.perso.dao.utils.ConstantePersistance;
 
 /**
@@ -25,22 +27,33 @@ public class PersonneDAOImpl extends GenericDAOImpl<Personne, Long> implements I
 	@Override
 	public List<Personne> findByNom(String nomPerson) {
 		
-		StringBuilder requete = new StringBuilder();
+//		StringBuilder requete = new StringBuilder();
+//		
+//		//Requï¿½te
+//		requete.append(" SELECT perso.prenom, perso.age");
+//		requete.append(" FROM Personne AS perso");
+//		requete.append(" WHERE perso.nomPerson =:" + ConstantePersistance.PARAM_NOM_PERSON);
+//		
+//		//Execution de la requï¿½te
+//		Query query = entityManager.createQuery(requete.toString());
+//		
+//		//Paramï¿½tres de la requï¿½te
+//		query.setParameter(ConstantePersistance.PARAM_NOM_PERSON, nomPerson);
+//		
+//		List<Personne> listePersoResult = new ArrayList<Personne>();
+//		listePersoResult = query.getResultList();
 		
-		//Requête
-		requete.append(" SELECT perso.prenom, perso.age");
-		requete.append(" FROM Personne AS perso");
-		requete.append(" WHERE perso.nomPerson =:" + ConstantePersistance.PARAM_NOM_PERSON);
 		
-		//Execution de la requête
-		Query query = entityManager.createQuery(requete.toString());
-		
-		//Paramètres de la requête
-		query.setParameter(ConstantePersistance.PARAM_NOM_PERSON, nomPerson);
-		
+		//BOUCHON
 		List<Personne> listePersoResult = new ArrayList<Personne>();
+		Personne persoBouchon =  new Personne();
+		persoBouchon.setId(112233L);
+		persoBouchon.setNom("monNom");
+		persoBouchon.setPrenom("monPrenom");
+		persoBouchon.setAge(20);
+		persoBouchon.setTypePerson(PersonneTypes.HOMME);
 		
-		listePersoResult = query.getResultList();
+		listePersoResult.add(persoBouchon);
 		
 		//Retour de la requete
 		return listePersoResult;

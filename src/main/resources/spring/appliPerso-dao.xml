@@ -4,6 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 	<!-- Definition des beans de la couche domaine -->
-	<bean id="personDomaine" class="fr.appli.perso.domaine.impl.PersonneDomaineImpl">
+	<bean id="personDao" class="fr.appli.perso.dao.impl.PersonneDAOImpl">
 	</bean>
 </beans>
