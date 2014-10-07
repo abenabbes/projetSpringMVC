@@ -3,11 +3,13 @@ package fr.appli.perso.dao.test.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dozer.DozerBeanMapper;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,6 +23,8 @@ import fr.appli.perso.web.vo.PersonneVo;
  */
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations={"classpath:spring/test-application-context.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring/test-application-context.xml"})
 public class TestMappingClasses {
 	
 	/** Notre Mapper de Beans. */
@@ -39,16 +43,16 @@ public class TestMappingClasses {
      mapper.map(personne, persoVo);
 	}
 	
-//	@BeforeClass
+	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
  
 		// Définition des fichiers de mapping
-		List <String> mappingFiles = new ArrayList <String>();
-		mappingFiles.add("mapping-dozer-person.xml");
- 
-		// Déclaration des fichiers de mapping
-		mapper = (DozerBeanMapper) DozerBeanMapperSingletonWrapper.getInstance();
-		mapper.setMappingFiles(mappingFiles);
+//		List <String> mappingFiles = new ArrayList <String>();
+//		mappingFiles.add("mapping-dozer-person.xml");
+// 
+//		// Déclaration des fichiers de mapping
+//		mapper = (DozerBeanMapper) DozerBeanMapperSingletonWrapper.getInstance();
+//		mapper.setMappingFiles(mappingFiles);
 	}
 	
 	@Test
